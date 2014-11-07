@@ -5,22 +5,57 @@
     <script rel="text/javascript" src="bower_components/angular/angular.min.js"></script>
     <script rel="text/javascript" src="app.js"></script>
   </head>
-  <body>
-
+  <body ng-controller="DatabaseController as resumeData">
     <div class="container">
-      <h1>Paul's Resume</h1>
-      <div class="jobs" ng-controller="PastJobs as jobs">
-        <ul ng-repeat="job in jobs.jobs">
-          <li>Employer: {{job.employer}}, {{job.location}}</li>
-          <li>Job Title: {{job.jobTitle}}</li>
-          <ul class="resps">
-            <li ng-repeat="for resp in job.resps">
-              {{responsibility}}
+
+      <form style="float:right;" name="jobForm" ng-controller="JobController as jobCtrl" ng-submit="jobCtrl.addJob(resumeData.resume)">
+        
+        <h3>ADD A JOB</h3>
+
+        <fieldset class="form-group">
+          <input ng-model="jobCtrl.newJob.title" placeholder="job title" />
+        </fieldset>
+        <fieldset class="form-group">
+          <input ng-model="jobCtrl.newJob.employer" placeholder="employer" />
+        </fieldset>
+        <fieldset class="form-group">
+          <input ng-model="jobCtrl.newJob.location" placeholder="location" />
+        </fieldset>
+        <input type="submit" placeholder="add job" />
+        <!-- Live Preview -->
+        <h5>Live Preview</h5>
+        <blockquote>
+          <h3>{{jobCtrl.newJob.title}}</h3>
+          <h4>{{jobCtrl.newJob.employer}}</h4>
+          <p>{{jobCtrl.newJob.location}}</p>
+          <ul>
+            <li ng-repeat="resp in jobCtrl.job.resps">
+              {{resp}}
             </li>
           </ul>
+        </blockquote>
+      </form>
 
+
+      <h1>Resume Data</h1>
+      <em>{{resumeData.resume.objective}}</em>
+
+      <ul ng-repeat="job in resumeData.resume.jobs">
+        <h3>{{job.title}}</h3>
+        <h4>{{job.employer}}</h4>
+        <p>{{job.location}}</p>
+        <ul>
+          <li ng-repeat="resp in job.resps">
+            {{resp}}
+          </li>
         </ul>
-      </div>
+        <form name="respForm" ng-controller="RespController as respCtrl" ng-submit="respCtrl.addResp(job)">
+          <input ng-model="respCtrl.newResp" placeholder="add a responsibility" />
+          <input type="submit" value="add" />
+        </form>
+      </ul>
+
+
     </div>
 
   </body>

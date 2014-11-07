@@ -3,9 +3,38 @@
   var app = angular.module('newResume', []);
 
   // Fake the DB
-  var pastEmployment = [{
+  app.controller('DatabaseController', function() {
+    this.resume = resumeData;
+  });
+
+  // Job controller
+  app.controller('JobController', function() {
+    this.newJob = {};
+    this.addJob = function(resume) {
+      this.newJob.resps = [];
+      resume.jobs.push(this.newJob);
+      this.newJob = {};
+    };
+  });
+
+  // response Controller
+  app.controller('RespController', function() {
+    this.newResp = '';
+    this.addResp = function(job){
+      job.resps.push(this.newResp);
+      this.newResp='';
+    };
+  });
+
+
+
+})();
+
+var resumeData = {
+  objective: "I want this to be the objective of the resume",
+  jobs: [{
     employer: 'Bentley University',
-    jobTitle: 'Web Developer',
+    title: 'Web Developer',
     resps: [
       'Did this thing',
       'Did another thing',
@@ -14,7 +43,7 @@
     location: 'Waltham MA'
   },{
     employer: 'Startup Institute',
-    jobTitle: 'Web Developer',
+    title: 'Web Developer',
     resps: [
       'Did this thkjsdkdfing',
       'Did another thsdkjghsdkjhing',
@@ -22,12 +51,4 @@
     ],
     location: 'Boston MA'
   }]
-
-  // Past Jobs Controller
-  app.controller('PastJobs', function() {
-    this.jobs = pastEmployment;
-  });
-
-
-
-})();
+}
