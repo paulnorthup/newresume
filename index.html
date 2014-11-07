@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="newResume">
+  <head>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <script rel="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script rel="text/javascript" src="app.js"></script>
+  </head>
+  <body>
+
+    <div class="container">
+      <h1>Paul's Resume</h1>
+      <div class="jobs" ng-controller="PastJobs as jobs">
+        <ul ng-repeat="job in jobs.jobs">
+          <li>Employer: {{job.employer}}, {{job.location}}</li>
+          <li>Job Title: {{job.jobTitle}}</li>
+          <ul class="resps">
+            <li ng-repeat="for resp in job.resps">
+              {{responsibility}}
+            </li>
+          </ul>
+
+        </ul>
+      </div>
+    </div>
+
+  </body>
+</html>
