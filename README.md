@@ -3,7 +3,7 @@
 ---
 
 ##Install
-  - Make a `nesresume` directory and clone the app along with the wiki.
+  - Make a `newresume` directory and clone the app along with the wiki.
   - Just copy and paste below:
 
 `mkdir newresume && cd newresume && git clone git@github.com:paulnorthup/newresume.git app && git clone git@github.com:paulnorthup/newresume.wiki.git wiki && cd app && bower install && open index.html`
